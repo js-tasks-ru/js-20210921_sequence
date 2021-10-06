@@ -8,13 +8,13 @@ export function createGetter(path) {
   let traverseDepth = split.length;
   return function(obj) {
     let objQuery = obj;
-    function traverse(obj, index) {
-      if (index == traverseDepth || obj === undefined) {
-        return obj;
+    function traverse(index) {
+      if (index == traverseDepth || objQuery === undefined) {
+        return objQuery;
       }
-      obj = obj[split[index]];
-      return traverse(obj, ++index);
+      objQuery = objQuery[split[index]];
+      return traverse(++index);
     }
-    return traverse(objQuery, 0);
+    return traverse(0);
   }
 }
